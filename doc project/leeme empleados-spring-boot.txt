@@ -1,0 +1,31 @@
+* empleados spring-boot (puerto 5555): microservicio rest de empleados tirando de mysql. Usa i18n para el
+mensaje de bienvenida. 
+
+	- Tres daos - uno en memoria, el otro inmutable que siempre devuelve el mismo empleado
+	  y un spring jdbc que ataca empleados_simple.
+	  
+	- Una clase java config para instanciar DAODumb.
+	
+	- Un controlador Home que redirige / a /index.jsp
+	  
+	- Un controlador Rest que funciona con JSON y XML y mapea a /empleados/ y sus derivados. Si probamos
+	  directamente con el navegador va a devolver xml (por la cabecera que se envía, creo). El Json
+	  se puede probar con Postman. Su api es:
+	
+		- GET /empleados/: devuelve todos los empleados
+		- GET /empleados/x: devuelve el empleado con cif x
+		- PUT /empleados/: inserta un empleado
+		- DELETE /empleados/x: elimina el empleado con cif x
+		- POST /empleados/: modifica un empleado
+		
+	  Trabaja con Json y xml porque Spring detecta las librerías Jackson en el path y 
+	  utiliza httpmessageconverters. Es por ello que al hacer la misma petición REST 
+	  con un navegador web el segundo devuelve siempre JSON pero el primero puede devolver xml
+	  (depende de la cabecera de aceptación de respuesta que envía el cliente).
+	  
+	- Implementamos seguridad con java config con un usuario profe / profe mediante
+	  la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig. El /logout está implementado
+	  pero no funciona bien (debe ser algo del spring boot, porque sin él sí que funciona).
+
+	- EmpleadosApp arranca el servidor embebido.
+
