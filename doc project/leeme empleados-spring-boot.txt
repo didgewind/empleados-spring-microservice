@@ -25,7 +25,14 @@ mensaje de bienvenida.
 	  
 	- Implementamos seguridad con java config con un usuario profe / profe mediante
 	  la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig. El /logout está implementado
-	  pero no funciona bien (debe ser algo del spring boot, porque sin él sí que funciona).
+	  pero no funciona bien (debe ser algo del spring boot, porque sin él sí que funciona. Ver más abajo).
 
 	- EmpleadosApp arranca el servidor embebido.
 
+- Sobre el logout (cogido del proyecto 'empleados hb spring mvc sec ws 4' del workspace
+'spring completo', ver si se puede aplicar aquí): parece que desde la versión 4 de spring security 
+el logout por defecto sólo
+funciona cuando hacemos una petición de logout POST enviando un csrf (ver apuntes de seguridad
+spring). Para habilitar el logout get lo podemos hacer deshabilitando el csrf (como hacemos
+en el proyecto mencionado al configurar la seguridad de forma declarativa) o mediante el código que
+se encuentra en la clase WebSecurityConfig del mismo proyecto (que respeta el csrf).
