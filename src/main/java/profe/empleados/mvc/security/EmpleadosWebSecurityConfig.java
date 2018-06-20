@@ -26,7 +26,7 @@ public class EmpleadosWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/empleados", "/empleados/*").hasRole("ADMIN")
 				.and()
-			.httpBasic()
+			.formLogin()
 				.and()
 			.csrf().disable()
 			.logout()

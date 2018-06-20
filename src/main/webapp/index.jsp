@@ -12,5 +12,14 @@
 <p>
 <spring:message code="saludo"/>
 </p>
+<p>
+Las credenciales son profe - profe
+</p>
+<p><pre>
+- GET /empleados/: devuelve todos los empleados
+- GET /empleados/x: devuelve el empleado con cif x
+- PUT /empleados/: inserta un empleado
+- DELETE /empleados/x: elimina el empleado con cif x
+- POST /empleados/: modifica un empleado</pre>
 </body>
 </html>
