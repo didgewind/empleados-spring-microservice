@@ -14,23 +14,23 @@ mensaje de bienvenida.
 	
 		- GET /empleados/: devuelve todos los empleados
 		- GET /empleados/x: devuelve el empleado con cif x
-		- PUT /empleados/: inserta un empleado
-		- DELETE /empleados/x: elimina el empleado con cif x
-		- POST /empleados/: modifica un empleado
+		- PUT /empleados/: inserta un empleado (sólo admin)
+		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
+		- POST /empleados/: modifica un empleado (sólo admin)
 		
 	  Trabaja con Json y xml porque Spring detecta las librerías Jackson en el path y 
 	  utiliza httpmessageconverters. Es por ello que al hacer la misma petición REST 
 	  con un navegador web el segundo devuelve siempre JSON pero el primero puede devolver xml
 	  (depende de la cabecera de aceptación de respuesta que envía el cliente).
 	  
-	- Implementamos seguridad con java config con un usuario profe / profe mediante
+	- Implementamos seguridad con java config con un usuario profe / profe o administrador admin / admin mediante
 	  la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig. El /logout está implementado
-	  pero no funciona bien (debe ser algo del spring boot, porque sin él sí que funciona. Ver más abajo).
+	  y ahora ya funciona
 
 	- EmpleadosApp arranca el servidor embebido.
 
 - Sobre el logout (cogido del proyecto 'empleados hb spring mvc sec ws 4' del workspace
-'spring completo', ver si se puede aplicar aquí): parece que desde la versión 4 de spring security 
+'spring completo'): parece que desde la versión 4 de spring security 
 el logout por defecto sólo
 funciona cuando hacemos una petición de logout POST enviando un csrf (ver apuntes de seguridad
 spring). Para habilitar el logout get lo podemos hacer deshabilitando el csrf (como hacemos
