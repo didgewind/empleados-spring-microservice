@@ -13,7 +13,8 @@
 <spring:message code="saludo"/>
 </p>
 <p>
-Las credenciales son profe - profe (User) o admin - admin (Administrador)
+Las credenciales son profe - profe (User) o admin - admin (Administrador). Una vez autenticado puedes hacer logout
+<a href="logout">aquí</a>
 </p>
 <p><pre>
 - GET /empleados/: devuelve todos los empleados

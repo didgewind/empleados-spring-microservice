@@ -31,7 +31,7 @@ public class EmpleadosWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin()
 				.and()
-			.httpBasic()
+			.httpBasic()  // Para poder hacer peticiones desde postman
 				.and()
 			.csrf().disable()
 			.logout()
