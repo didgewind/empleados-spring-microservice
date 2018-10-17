@@ -40,3 +40,4 @@ funciona cuando hacemos una petición de logout POST enviando un csrf (ver apunt
 spring). Para habilitar el logout get lo podemos hacer deshabilitando el csrf (como hacemos
 en el proyecto mencionado al configurar la seguridad de forma declarativa) o mediante el código que
 se encuentra en la clase WebSecurityConfig del mismo proyecto (que respeta el csrf).
+

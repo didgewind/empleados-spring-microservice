@@ -22,5 +22,6 @@ Las credenciales son profe - profe (User) o admin - admin (Administrador). Una v
 - PUT /empleados/: inserta un empleado (sólo admin)
 - DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
 - POST /empleados/: modifica un empleado (sólo admin)</pre>
+
 </body>
 </html>
