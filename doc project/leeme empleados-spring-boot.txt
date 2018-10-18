@@ -1,7 +1,9 @@
 Esta versión tira de spring boot 1.5
 
-* empleados spring-boot (puerto 5555): microservicio rest de empleados tirando de mysql. Usa i18n para el
-mensaje de bienvenida. 
+* empleados spring-boot (puerto 5555 y siguientes): microservicio rest de empleados tirando de mysql. 
+Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
+diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
+ir cambiando el server.port y ejecutar.
 
 	- Tres daos - uno en memoria, el otro inmutable que siempre devuelve el mismo empleado
 	  y un spring jdbc que ataca empleados_simple.

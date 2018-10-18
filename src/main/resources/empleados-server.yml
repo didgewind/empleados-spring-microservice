@@ -21,8 +21,11 @@ eureka:
       defaultZone: http://localhost:1111/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 5
+# Para poder lanzar diferentes instancias
+# (hay que modificar el server.port para cada instancia)
+    instanceId=:
       
 server:
-  port: 5555
+  port: 5556
   
  

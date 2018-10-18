@@ -26,6 +26,11 @@ public class EmpDAOMock implements EmpDAO {
 		mpEmpleados.put("23412312H", 
 				new Empleado("23412312H", "Javier", "Pascual",
 						23));
+		mpEmpleados.put("123452435T", new Empleado("123452435T", "Esthela", "Ruíz", 54)); 
+		mpEmpleados.put("223452435A", new Empleado("223452435A", "Manuel", "Alonso", 64));   
+		mpEmpleados.put("323452435B", new Empleado("323452435B", "Mirkka", "Touko", 22));    
+		mpEmpleados.put("523452435S", new Empleado("523452435S", "Ethan", "Hawk", 47));      
+		mpEmpleados.put("623452435D", new Empleado("623452435D", "Jesús", "Gutiérrez", 81));
 	}
 
 	@Override
