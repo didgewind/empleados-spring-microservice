@@ -1,0 +1,24 @@
+drop database if exists empleados_simple;
+
+create database if not exists empleados_simple;
+use empleados_simple;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple.* to maza@localhost identified by 'maza';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);

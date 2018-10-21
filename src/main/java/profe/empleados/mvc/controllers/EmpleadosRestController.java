@@ -1,10 +1,12 @@
 package profe.empleados.mvc.controllers;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +22,9 @@ import profe.empleados.negocio.EmpNegocio;
 @RequestMapping("/empleados")
 public class EmpleadosRestController {
 
+	private Logger logger = Logger.getLogger(EmpleadosRestController.class
+			.getName());
+
 	@Autowired
 	private EmpNegocio negocio;
 	
@@ -28,8 +33,9 @@ public class EmpleadosRestController {
 		return negocio.getEmpleado(cif);
 	}
 	
-	@RequestMapping
+	@GetMapping
 	public List<Empleado> getAllEmpleados() {
+		logger.info("Petición getAllEmpleados() recibida");
 		return negocio.getAllEmpleados();
 	}
 	
