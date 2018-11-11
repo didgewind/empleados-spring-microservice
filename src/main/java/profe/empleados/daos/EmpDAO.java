@@ -10,10 +10,10 @@ public interface EmpDAO {
 	
 	List<Empleado> getAllEmpleados();
 	
-	void insertaEmpleado(Empleado emp);
+	boolean insertaEmpleado(Empleado emp);
 
-	void modificaEmpleado(Empleado emp);
+	boolean modificaEmpleado(Empleado emp);
 
-	void eliminaEmpleado(String cif);
+	boolean eliminaEmpleado(String cif);
 
 }

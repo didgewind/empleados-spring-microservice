@@ -25,21 +25,19 @@ public class EmpDAODumb implements EmpDAO {
 	}
 
 	@Override
-	public void insertaEmpleado(Empleado emp) {
-		// TODO Auto-generated method stub
+	public boolean insertaEmpleado(Empleado emp) {
+		return true;
+	}
+
+	@Override
+	public boolean modificaEmpleado(Empleado emp) {
+		return true;
 
 	}
 
 	@Override
-	public void modificaEmpleado(Empleado emp) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void eliminaEmpleado(String cif) {
-		// TODO Auto-generated method stub
-
+	public boolean eliminaEmpleado(String cif) {
+		return true;
 	}
 
 }

@@ -44,18 +44,28 @@ public class EmpDAOMock implements EmpDAO {
 	}
 
 	@Override
-	public void insertaEmpleado(Empleado emp) {
-		mpEmpleados.put(emp.getCif(), emp);
+	public boolean insertaEmpleado(Empleado emp) {
+		if (!mpEmpleados.containsKey(emp.getCif())) {
+			mpEmpleados.put(emp.getCif(), emp);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void modificaEmpleado(Empleado emp) {
-		this.insertaEmpleado(emp);
+	public boolean modificaEmpleado(Empleado emp) {
+		if (mpEmpleados.containsKey(emp.getCif())) {
+			mpEmpleados.put(emp.getCif(), emp);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void eliminaEmpleado(String cif) {
-		mpEmpleados.remove(cif);
+	public boolean eliminaEmpleado(String cif) {
+		return null != mpEmpleados.remove(cif);
 	}
 
 }

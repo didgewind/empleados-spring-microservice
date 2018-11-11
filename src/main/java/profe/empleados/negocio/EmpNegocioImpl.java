@@ -26,20 +26,16 @@ public class EmpNegocioImpl implements EmpNegocio {
 		return dao.getAllEmpleados();
 	}
 
-	public void insertaEmpleado(Empleado emp) {
-		dao.insertaEmpleado(emp);
+	public boolean insertaEmpleado(Empleado emp) {
+		return dao.insertaEmpleado(emp);
 	}
 
-	public void modificaEmpleado(Empleado emp) {
-		dao.modificaEmpleado(emp);
+	public boolean modificaEmpleado(Empleado emp) {
+		return dao.modificaEmpleado(emp);
 	}
 
-	public void eliminaEmpleado(String cif) {
-		dao.eliminaEmpleado(cif);
-	}
-
-	public void setDao(EmpDAO dao) {
-		this.dao = dao;
+	public boolean eliminaEmpleado(String cif) {
+		return dao.eliminaEmpleado(cif);
 	}
 
 	@Override

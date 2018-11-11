@@ -3,11 +3,15 @@ package profe.empleados.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -36,6 +40,9 @@ public class EmpDAOJdbc implements EmpDAO {
 				"delete from empleados where cif=?";
 	}
 	
+	private Logger logger = Logger.getLogger(EmpDAOJdbc.class
+			.getName());
+
 	private static final class EmpleadoMapper 
 			implements RowMapper<Empleado> {
 
@@ -57,9 +64,15 @@ public class EmpDAOJdbc implements EmpDAO {
 
 	@Override
 	public Empleado getEmpleado(String cif) {
-		return this.jdbcTemplate.queryForObject(
+		Empleado emp = null;
+		try {
+			this.jdbcTemplate.queryForObject(
 				ConstantesSQL.SELECT_EMPLEADO,
 				new Object[]{cif}, new EmpleadoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			logger.info("Intento de recuperación de un empleado que no existe: " + cif);
+		}
+		return emp;
 	}
 
 	@Override
@@ -71,22 +84,28 @@ public class EmpDAOJdbc implements EmpDAO {
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void insertaEmpleado(Empleado emp) {
-		this.jdbcTemplate.update(ConstantesSQL.INSERTA_EMPLEADO,
-				emp.getCif(), emp.getNombre(), emp.getApellidos(), 
-				emp.getEdad());
+	public boolean insertaEmpleado(Empleado emp) {
+		try {
+			this.jdbcTemplate.update(ConstantesSQL.INSERTA_EMPLEADO,
+					emp.getCif(), emp.getNombre(), emp.getApellidos(), 
+					emp.getEdad());
+			return true;
+		} catch (DataAccessException e) {
+			logger.log(Level.SEVERE, "Error en insertaEmpleado del DAOJdbc", e);
+			return false;
+		}
 	}
 
 	@Override
-	public void modificaEmpleado(Empleado emp) {
-		this.jdbcTemplate.update(ConstantesSQL.MODIFICA_EMPLEADO,
+	public boolean modificaEmpleado(Empleado emp) {
+		return 1 == this.jdbcTemplate.update(ConstantesSQL.MODIFICA_EMPLEADO,
 				emp.getNombre(), emp.getApellidos(), 
 				emp.getEdad(), emp.getCif());
 	}
 
 	@Override
-	public void eliminaEmpleado(String cif) {
-		this.jdbcTemplate.update(ConstantesSQL.ELIMINA_EMPLEADO, cif);
+	public boolean eliminaEmpleado(String cif) {
+		return 1 == this.jdbcTemplate.update(ConstantesSQL.ELIMINA_EMPLEADO, cif);
 	}
 
 }

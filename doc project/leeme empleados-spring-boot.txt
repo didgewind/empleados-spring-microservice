@@ -27,6 +27,9 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  con un navegador web y Postman el segundo devuelve siempre JSON pero el primero puede devolver xml
 	  (depende de la cabecera de aceptación de respuesta que envía el cliente).
 	  
+	  Devuelve cabeceras con código de error en caso de que se produzcan (por ejemplo, NOT_FOUND en caso
+	  de delete o get de un cif que no existe, o CONFLICT si el empleado está repetido)
+	  
 	- Implementamos seguridad con java config con un usuario profe / profe o administrador admin / admin mediante
 	  la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig.  Añadimos {noop} como prefijo al
 	  declarar las contraseñas (transparente para el cliente) para saltarnos el requerimiento
