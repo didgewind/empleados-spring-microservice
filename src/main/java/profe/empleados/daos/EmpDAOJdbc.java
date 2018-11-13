@@ -66,7 +66,7 @@ public class EmpDAOJdbc implements EmpDAO {
 	public Empleado getEmpleado(String cif) {
 		Empleado emp = null;
 		try {
-			this.jdbcTemplate.queryForObject(
+			emp = this.jdbcTemplate.queryForObject(
 				ConstantesSQL.SELECT_EMPLEADO,
 				new Object[]{cif}, new EmpleadoMapper());
 		} catch (EmptyResultDataAccessException e) {
@@ -83,7 +83,7 @@ public class EmpDAOJdbc implements EmpDAO {
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+//	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public boolean insertaEmpleado(Empleado emp) {
 		try {
 			this.jdbcTemplate.update(ConstantesSQL.INSERTA_EMPLEADO,

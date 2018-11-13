@@ -29,7 +29,7 @@
 		{
 			"name": "create",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -112,7 +112,7 @@
 		{
 			"name": "modify",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -121,17 +121,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"cif\": \"2343234R\",\n    \"nombre\": \"Antonio\",\n    \"apellidos\": \"Villanueva\",\n    \"edad\": 45\n}"
+					"raw": "{\n    \"cif\": \"2343234\",\n    \"nombre\": \"Antonio\",\n    \"apellidos\": \"Villanueva\",\n    \"edad\": 45\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5555/empleados",
+					"raw": "http://localhost:5555/empleados/2343234",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5555",
 					"path": [
-						"empleados"
+						"empleados",
+						"2343234"
 					]
 				}
 			},

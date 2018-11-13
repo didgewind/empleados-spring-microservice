@@ -57,20 +57,27 @@ public class EmpleadosRestController {
 	}
 	
 	
-	@PutMapping
+	@PostMapping
 	public ResponseEntity<Void> nuevoEmpleado(@RequestBody Empleado empleado, 
 			HttpServletResponse response) throws IOException {
 		if(negocio.insertaEmpleado(empleado)) {
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else { // Error, probablemente el empleado no exista
+			logger.info("Intentando insertar un empleado que ya existe");
 			response.sendError(HttpStatus.CONFLICT.value());
 			return null;
 		}
 	}
 
-	@PostMapping
-	public ResponseEntity<String> modificaEmpleado(	@RequestBody Empleado empleado, 
+	/*
+	 * Usamos el cif del empleado recibido en la url, el del body
+	 * lo ignoramos. Podrían combinarse para cambiar el cif en la bd
+	 */
+	@RequestMapping(value="/{cif}", method=RequestMethod.PUT)
+	public ResponseEntity<String> modificaEmpleado(@PathVariable String cif, 
+			@RequestBody Empleado empleado, 
 			HttpServletResponse response) throws IOException {
+		empleado.setCif(cif);
 		if(negocio.modificaEmpleado(empleado)) {
 			return new ResponseEntity<String>("Todo ok", HttpStatus.OK);
 		} else { // Error, probablemente el empleado no exista

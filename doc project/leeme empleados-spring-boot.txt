@@ -18,9 +18,13 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	
 		- GET /empleados/: devuelve todos los empleados
 		- GET /empleados/x: devuelve el empleado con cif x
-		- PUT /empleados/: inserta un empleado (sólo admin)
+		- PUT /empleados/: modifica un empleado (sólo admin)
 		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
-		- POST /empleados/: modifica un empleado (sólo admin)
+		- POST /empleados/: inserta un empleado (sólo admin)
+		
+	  ATENCIÓN, EL API LO HEMOS CAMBIADO A PARTIR DE ESTE COMMIT, AHORA POST Y PUT ESTÁN INTERCAMBIADOS.
+	  LA SINTÁXIS POST QUE USO NO ES TOTALMENTE CORRECTA (VER https://restfulapi.net/rest-put-vs-post/
+	  Y COMENTARIOS) PERO ME VALE COMO EJEMPLO
 		
 	  Trabaja con Json y xml porque Spring detecta las librerías Jackson en el path y 
 	  utiliza httpmessageconverters. Es por ello que al hacer la misma petición REST 
