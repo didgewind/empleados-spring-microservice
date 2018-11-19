@@ -23,14 +23,12 @@ public class EmpDAOMock implements EmpDAO {
 	
 	@PostConstruct
 	public void init() {
-		mpEmpleados.put("23412312H", 
-				new Empleado("23412312H", "Javier", "Pascual",
-						23));
-		mpEmpleados.put("123452435T", new Empleado("123452435T", "Esthela", "Ruíz", 54)); 
-		mpEmpleados.put("223452435A", new Empleado("223452435A", "Manuel", "Alonso", 64));   
-		mpEmpleados.put("323452435B", new Empleado("323452435B", "Mirkka", "Touko", 22));    
-		mpEmpleados.put("523452435S", new Empleado("523452435S", "Ethan", "Hawk", 47));      
-		mpEmpleados.put("623452435D", new Empleado("623452435D", "Jesús", "Gutiérrez", 81));
+		mpEmpleados.put("1", new Empleado("1", "Javier", "Pascual", 23));
+		mpEmpleados.put("2", new Empleado("2", "Esthela", "Ruíz", 54)); 
+		mpEmpleados.put("3", new Empleado("3", "Manuel", "Alonso", 64));   
+		mpEmpleados.put("4", new Empleado("4", "Mirkka", "Touko", 22));    
+		mpEmpleados.put("5", new Empleado("5", "Ethan", "Hawk", 47));      
+		mpEmpleados.put("6", new Empleado("6", "Jesús", "Gutiérrez", 81));
 	}
 
 	@Override

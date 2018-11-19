@@ -1,53 +1,40 @@
 package profe.empleados.mvc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
-public class EmpleadosWebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class EmpleadosSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-			.withUser("profe").password("{noop}profe").roles("USER")
-				.and()
-			.withUser("admin").password("{noop}admin").roles("ADMIN");
-	}
-
+	private JwtFilter jwtFilter;
+	
+	/*
+	 * Configuramos la seguridad de la siguiente manera:
+	 * 
+	 * - Autorizamos accesos
+	 * 
+	 * - Añadimos el filtro de gestión jwt
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/empleados", "/empleados/*").hasAnyRole("USER", "ADMIN")
 				.antMatchers("/empleados", "/empleados/*").hasRole("ADMIN")
 				.antMatchers("/").permitAll()
 				.and()
-			.formLogin()
-				.and()
-			.httpBasic()  // Para poder hacer peticiones desde postman
-				.and()
-			.csrf().disable()
-			.logout()
-				.logoutSuccessUrl("/");			
+            // Cualquier petición pasará por este filtro para validar el token
+            .addFilterBefore(jwtFilter,
+            		BasicAuthenticationFilter.class);
 	}
 
-	/*
-	 * Para evitar que nos de el error 'There is no PasswordEncoder mapped for the id "null"'
-	 * al hacer login con spring security 5
-	 */
-/*	@SuppressWarnings("deprecation")
-	@Bean
-	public static NoOpPasswordEncoder passwordEncoder() {
-		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-	}*/
-	
 }
