@@ -1,0 +1,407 @@
+# Crea 15 bases de datos empleados_simple_alumnoX con usuario y password alumnoX
+
+### alumno1 ###
+
+drop database if exists empleados_simple_alumno1;
+
+create database if not exists empleados_simple_alumno1;
+use empleados_simple_alumno1;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno1.* to alumno1@'%' identified by 'alumno1';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno2 ###
+
+drop database if exists empleados_simple_alumno2;
+
+create database if not exists empleados_simple_alumno2;
+use empleados_simple_alumno2;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno2.* to alumno2@'%' identified by 'alumno2';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno3 ###
+
+drop database if exists empleados_simple_alumno3;
+
+create database if not exists empleados_simple_alumno3;
+use empleados_simple_alumno3;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno3.* to alumno3@'%' identified by 'alumno3';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno4 ###
+
+drop database if exists empleados_simple_alumno4;
+
+create database if not exists empleados_simple_alumno4;
+use empleados_simple_alumno4;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno4.* to alumno4@'%' identified by 'alumno4';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno5 ###
+
+drop database if exists empleados_simple_alumno5;
+
+create database if not exists empleados_simple_alumno5;
+use empleados_simple_alumno5;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno5.* to alumno5@'%' identified by 'alumno5';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno6 ###
+
+drop database if exists empleados_simple_alumno6;
+
+create database if not exists empleados_simple_alumno6;
+use empleados_simple_alumno6;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno6.* to alumno6@'%' identified by 'alumno6';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno7 ###
+
+drop database if exists empleados_simple_alumno7;
+
+create database if not exists empleados_simple_alumno7;
+use empleados_simple_alumno7;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno7.* to alumno7@'%' identified by 'alumno7';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno8 ###
+
+drop database if exists empleados_simple_alumno8;
+
+create database if not exists empleados_simple_alumno8;
+use empleados_simple_alumno8;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno8.* to alumno8@'%' identified by 'alumno8';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno9 ###
+
+drop database if exists empleados_simple_alumno9;
+
+create database if not exists empleados_simple_alumno9;
+use empleados_simple_alumno9;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno9.* to alumno9@'%' identified by 'alumno9';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno10 ###
+
+drop database if exists empleados_simple_alumno10;
+
+create database if not exists empleados_simple_alumno10;
+use empleados_simple_alumno10;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno10.* to alumno10@'%' identified by 'alumno10';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno11 ###
+
+drop database if exists empleados_simple_alumno11;
+
+create database if not exists empleados_simple_alumno11;
+use empleados_simple_alumno11;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno11.* to alumno11@'%' identified by 'alumno11';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno12 ###
+
+drop database if exists empleados_simple_alumno12;
+
+create database if not exists empleados_simple_alumno12;
+use empleados_simple_alumno12;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno12.* to alumno12@'%' identified by 'alumno12';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno13 ###
+
+drop database if exists empleados_simple_alumno13;
+
+create database if not exists empleados_simple_alumno13;
+use empleados_simple_alumno13;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno13.* to alumno13@'%' identified by 'alumno13';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno14 ###
+
+drop database if exists empleados_simple_alumno14;
+
+create database if not exists empleados_simple_alumno14;
+use empleados_simple_alumno14;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno14.* to alumno14@'%' identified by 'alumno14';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+
+### alumno15 ###
+
+drop database if exists empleados_simple_alumno15;
+
+create database if not exists empleados_simple_alumno15;
+use empleados_simple_alumno15;
+
+## CREATES ##
+
+# Tablas de entidades
+
+CREATE TABLE IF NOT EXISTS empleados 
+(cif VARCHAR(9) NOT NULL, 
+nombre VARCHAR(20), 
+apellidos VARCHAR(20), 
+edad INTEGER, 
+primary key (cif));
+
+grant all on empleados_simple_alumno15.* to alumno15@'%' identified by 'alumno15';
+
+INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
+("34334789H", "Antonio", "Martín", 23),
+("21094387T", "Juan", "González", 40),
+("01293474E", "Isabel", "Fuentes", 18),
+("23948745F", "Lucille", "King", 25),
+("40948574G", "Neo", "Preno", 12);
+

@@ -1,0 +1,15 @@
+drop database if exists empleados_simple_alumno1;
+drop database if exists empleados_simple_alumno2;
+drop database if exists empleados_simple_alumno3;
+drop database if exists empleados_simple_alumno4;
+drop database if exists empleados_simple_alumno5;
+drop database if exists empleados_simple_alumno6;
+drop database if exists empleados_simple_alumno7;
+drop database if exists empleados_simple_alumno8;
+drop database if exists empleados_simple_alumno9;
+drop database if exists empleados_simple_alumno10;
+drop database if exists empleados_simple_alumno11;
+drop database if exists empleados_simple_alumno12;
+drop database if exists empleados_simple_alumno13;
+drop database if exists empleados_simple_alumno14;
+drop database if exists empleados_simple_alumno15;

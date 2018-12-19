@@ -18,7 +18,8 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	
 		- GET /empleados/: devuelve todos los empleados
 		- GET /empleados/x: devuelve el empleado con cif x
-		- PUT /empleados/: modifica un empleado (sólo admin)
+		- PUT /empleados/x: modifica un empleado (sólo admin). Podríamos cambiar el cif de un empleado,
+		  pero de momento en el controlador ignoramos el cif que recibimos en el body.
 		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
 		- POST /empleados/: inserta un empleado (sólo admin)
 		
@@ -32,7 +33,11 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  (depende de la cabecera de aceptación de respuesta que envía el cliente).
 	  
 	  Devuelve cabeceras con código de error en caso de que se produzcan (por ejemplo, NOT_FOUND en caso
-	  de delete o get de un cif que no existe, o CONFLICT si el empleado está repetido)
+	  de delete o get de un cif que no existe, o CONFLICT si el empleado está repetido).
+	  
+	  Los métodos insert, modify y delete devuelven un ResponseEntity<void>, aunque podrían devolver
+	  directamente un Empleado (ver el controlador del proyecto empleados-db) o quizás simplemente
+	  un void.
 	  
 	- Implementamos autorización con java config discriminando por roles USER y ADMIN
 	  mediante la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig. Ahora usamos jwt y
@@ -43,7 +48,8 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  La clase clave en el proceso de autorización es JwtFilter, que básicamente salta en cada
 	  petición y, si el cliente envía un token jwt, lo transforma en un usuario con sus roles y
 	  lo añade al contexto de seguridad. Luego ya el propio spring comprobará si ese role está
-	  autorizado o no para acceder al recurso solicitado.
+	  autorizado o no para acceder al recurso solicitado. Si no hay token jwt o no está bien formado
+	  el usuario no se añade al contexto de seguridad (acceso anónimo)
 
 	- EmpleadosApp arranca el servidor embebido.
 

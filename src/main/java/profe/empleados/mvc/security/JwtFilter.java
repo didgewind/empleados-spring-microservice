@@ -20,6 +20,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
+/**
+ * Filtro de seguridad para el microservicio de empleados
+ * @author made
+ *
+ */
 public class JwtFilter extends OncePerRequestFilter {
 
 	@Value("${app.jwtSecretKey}")
@@ -47,21 +52,25 @@ public class JwtFilter extends OncePerRequestFilter {
 
 		// si hay un token presente, entonces lo validamos
 		if (token != null) {
-			Claims claims = Jwts
-							.parser()
-							.setSigningKey(jwtSecretKey)
-							.parseClaimsJws(token.replace("Bearer", ""))
-							.getBody();
-			String user = claims.getSubject();
-
-			// La contraseña no se envía en el token jwt ni se pide para ninguna petición
-			// en este servicio
-			// por este motivo devolvemos un UsernamePasswordAuthenticationToken sin
-			// password
-			if (user != null) {
-				List<String> authorities = (List<String>) claims.get("authorities");
-				authentication = new UsernamePasswordAuthenticationToken(user, null, 
-						authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+			try { // Nos saltamos todo si el token está vacío o malformado
+				Claims claims = Jwts
+								.parser()
+								.setSigningKey(jwtSecretKey)
+								.parseClaimsJws(token.replace("Bearer", ""))
+								.getBody();
+				String user = claims.getSubject();
+	
+				// La contraseña no se envía en el token jwt ni se pide para ninguna petición
+				// en este servicio
+				// por este motivo devolvemos un UsernamePasswordAuthenticationToken sin
+				// password
+				if (user != null) {
+					List<String> authorities = (List<String>) claims.get("authorities");
+					authentication = new UsernamePasswordAuthenticationToken(user, null, 
+							authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+				}
+			} catch (Exception e) {
+				logger.info("Error al parsear el token", e);
 			}
 		}
 
