@@ -63,7 +63,7 @@ public class EmpleadosRestController {
 		if(negocio.insertaEmpleado(empleado)) {
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else { // Error, probablemente el empleado no exista
-			logger.info("Intentando insertar un empleado que ya existe");
+			logger.info("Intentando insertar un empleado que ya existe, cif: " + empleado.getCif());
 			response.sendError(HttpStatus.CONFLICT.value());
 			return null;
 		}

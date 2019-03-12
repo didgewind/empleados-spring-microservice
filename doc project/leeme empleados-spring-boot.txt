@@ -1,7 +1,7 @@
 Esta versión tira de spring boot 2.0
 
-* empleados spring-boot (puerto aleatorio): microservicio rest de empleados eliminando referencias a bd,
-para poder ejecutar en cualquier equipo. 
+* empleados spring-boot (puerto 5555): microservicio rest de empleados eliminando referencias a bd,
+a seguridad y a eureka para poder ejecutar en cualquier equipo. 
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
 diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
 hay que ejecutar la app, porque el puerto está configurado para que se elija aleatoriamente.
@@ -19,7 +19,7 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	
 		- GET /empleados/: devuelve todos los empleados
 		- GET /empleados/x: devuelve el empleado con cif x
-		- PUT /empleados/: modifica un empleado (sólo admin)
+		- PUT /empleados/x: modifica un empleado (sólo admin)
 		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
 		- POST /empleados/: inserta un empleado (sólo admin)
 		
