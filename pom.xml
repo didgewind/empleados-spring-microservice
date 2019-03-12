@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>profe.empleados</groupId>
-  <artifactId>spring-boot</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>empleados-mock-db</artifactId>
+  <version>0.1</version>
   <packaging>jar</packaging>
 
   <name>spring-boot</name>
@@ -30,20 +30,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <scope>test</scope>
-        </dependency>
-		<dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 	    <dependency>
 	      <groupId>junit</groupId>
