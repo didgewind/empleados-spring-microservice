@@ -26,7 +26,13 @@ eureka:
       
 server:
 # Puerto aleatorio
-  port: ${PORT:0}
-#  port: 5555
+#  port: ${PORT:0}
+  port: 5555
   
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    
  
