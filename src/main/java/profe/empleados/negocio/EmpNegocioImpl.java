@@ -14,7 +14,9 @@ import profe.empleados.model.Empleado;
 @Transactional
 public class EmpNegocioImpl implements EmpNegocio {
 
-	@Resource(name="daoJdbc")
+
+	@Resource(name="daoHb")
+
 	//@Autowired
 	private EmpDAO dao;
 

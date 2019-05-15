@@ -28,11 +28,20 @@ server:
 # Puerto aleatorio
 #  port: ${PORT:0}
   port: 5555
-  
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-    
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+  show_sql: true
+  packagesToScan: profe.empleados.model
+
+# Config propia
+app:
+  jwtSecretKey: P@tit0 
+
  

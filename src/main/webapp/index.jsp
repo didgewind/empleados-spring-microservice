@@ -6,15 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Empleados Rest simple</title>
 </head>
 <body>
 <p>
 <spring:message code="saludo"/>
 </p>
 <p>
-Las credenciales son profe - profe (User) o admin - admin (Administrador). Una vez autenticado puedes hacer logout
-<a href="logout">aquí</a>
+Empleados simple con hibernate y actuator
 </p>
 <p><pre>
 - GET /empleados/: devuelve todos los empleados
