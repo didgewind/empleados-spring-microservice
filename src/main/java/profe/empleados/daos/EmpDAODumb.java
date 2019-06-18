@@ -3,8 +3,6 @@ package profe.empleados.daos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import profe.empleados.model.Empleado;
 
 public class EmpDAODumb implements EmpDAO {
