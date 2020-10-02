@@ -2,8 +2,7 @@ package profe.empleados.negocio;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,7 @@ import profe.empleados.model.Empleado;
 @Transactional
 public class EmpNegocioImpl implements EmpNegocio {
 
-	@Resource(name="daoMock")
-	//@Autowired
+	@Autowired
 	private EmpDAO dao;
 
 	public Empleado getEmpleado(String cif) {

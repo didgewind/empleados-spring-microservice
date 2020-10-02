@@ -1,8 +1,14 @@
 # Datasource
 spring:
   datasource:
-     url: jdbc:mysql://localhost:3306/empleados_simple
 
+### Descomentar si queremos usar la bd derby. Comentar la parte de mysql ###
+#      driver-class-name: org.apache.derby.jdbc.ClientDriver
+#      url: jdbc:derby://localhost//home/made/appData/derby-dbs/empleados
+
+### Descomentar si queremos usar la bd mysql. Comentar la parte de derby ###
+
+     url: jdbc:mysql://localhost:3306/empleados_simple
 # Username and password
      username: maza
      password: maza
@@ -26,8 +32,8 @@ eureka:
       
 server:
 # Puerto aleatorio
-#  port: ${PORT:0}
-  port: 5555
+  port: ${PORT:0}
+#  port: 5555
  
 # Config propia
 app:

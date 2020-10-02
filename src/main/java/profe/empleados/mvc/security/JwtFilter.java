@@ -34,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
 	 * Esto funciona así: este filtro salta para cualquier petición, y va
 	 * a insertar siempre un Authentication en el contexto de seguridad, que será
 	 * un UsernamePasswordAuthenticationToken que incluye el user y sus roles
-	 * en caso de que el token jwt recibido sea correcto y null en caso contrario.
+	 * extraídos del token jwt recibido siempre que sea correcto y null en caso contrario.
 	 * Luego ya es responsabilidad de spring el autorizar o no el acceso al recurso
 	 * solicitado, aquí sólo proporcionamos el usuario que intenta acceder y sus roles.
 	 */

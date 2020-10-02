@@ -67,6 +67,13 @@ public class EmpleadosRestController {
 			response.sendError(HttpStatus.CONFLICT.value());
 			return null;
 		}
+	/* Si quisiéramos devolver el objeto que ha provocado el error */
+	/*  if (!negocio.insertaEmpleado(emp)) {
+			response.setStatus(HttpStatus.CONFLICT.value());
+			ObjectMapper mapper = new ObjectMapper();
+			String empJson = mapper.writeValueAsString(emp);
+			response.getWriter().print(empJson);
+		}*/
 	}
 
 	/*
