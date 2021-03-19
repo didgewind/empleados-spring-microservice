@@ -1,6 +1,7 @@
 package profe.empleados.mvc.controllers;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import profe.empleados.model.Empleado;
 import profe.empleados.negocio.EmpNegocio;
+import reactor.core.publisher.Flux;
 
 /**
  * Códigos de respuesta en caso de error de petición:
@@ -36,6 +37,8 @@ public class EmpleadosRestController {
 
 	private Logger logger = Logger.getLogger(EmpleadosRestController.class
 			.getName());
+	
+	private static final int DELAY_PER_ITEM_MS = 1000;
 
 	@Autowired
 	private EmpNegocio negocio;
@@ -54,6 +57,13 @@ public class EmpleadosRestController {
 	public List<Empleado> getAllEmpleados() {
 		logger.info("Petición getAllEmpleados() recibida");
 		return negocio.getAllEmpleados();
+	}
+	
+	@GetMapping("/reactive")
+	public Flux<Empleado> getAllEmpleadosReactive() {
+		logger.info("Petición getAllEmpleadosReactive() recibida");
+		return Flux.fromIterable(negocio.getAllEmpleados())
+				.delayElements(Duration.ofMillis(DELAY_PER_ITEM_MS));
 	}
 	
 	

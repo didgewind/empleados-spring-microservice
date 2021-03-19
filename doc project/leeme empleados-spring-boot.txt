@@ -1,4 +1,8 @@
-Esta versión tira de spring boot 2.0
+Esta versión tira de spring boot 2.0. Esta branch emite empleados de forma reactiva.
+
+Para probar la reactividad ejecutar desde un terminal:
+
+curl -u profe:profe -H "Accept: text/event-stream" "http://localhost:5555/empleados/reactive"
 
 * empleados spring-boot (puerto aleatorio): microservicio rest de empleados tirando de mysql. 
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
@@ -17,6 +21,7 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  se puede probar con Postman. Su api es:
 	
 		- GET /empleados/: devuelve todos los empleados
+		- GET /empleados/reactive: devuelve todos los empleados con un delay de 1 segundo por empleado
 		- GET /empleados/x: devuelve el empleado con cif x
 		- PUT /empleados/: modifica un empleado (sólo admin)
 		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
