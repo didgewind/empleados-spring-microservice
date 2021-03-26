@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>profe.empleados</groupId>
-  <artifactId>spring-boot</artifactId>
+  <artifactId>empleados-rest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 

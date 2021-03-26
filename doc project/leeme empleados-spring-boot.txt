@@ -1,5 +1,20 @@
 Esta versión tira de spring boot 2.0
 
+En este branch hemos añadido un Dockerfile para poder lanzar desde docker.
+Tenemos que empaquetar la app, dockerizarla (desde external tools o con el comando
+docker build -t empleados-service-manual-build .) y luego lanzarla con
+docker run --rm --net empleados-bridge -d --name empleados-service empleados-service-manual-build
+
+Previamente hemos creado la network empleados-bridge con el comando
+
+	docker network create empleados-bridge
+
+Además hemos cambiado el fichero de configuración para que busque el servidor eureka
+en localhost o resuelva al container de docker en función de si se pasa un parámetro
+(con el nombre del container eureka) al arrancar la app. Este parámetro se lo pasamos en
+el Dockerfile. También hemos cambiado la url de mysql para que acceda a través de la
+ip virtual de docker (la hemos averiguado con ip a).
+
 * empleados spring-boot (puerto aleatorio): microservicio rest de empleados tirando de mysql. 
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
 diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
