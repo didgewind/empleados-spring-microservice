@@ -1,7 +1,7 @@
 Esta versión tira de spring boot 2.0
 
 * empleados spring-boot (puerto 5555): microservicio rest de empleados eliminando referencias a bd,
-a seguridad y a eureka para poder ejecutar en cualquier equipo. 
+a seguridad y a eureka para poder ejecutar en cualquier equipo. A partir de un commit hay un ejemplo de swagger.
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
 diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
 hay que ejecutar la app, porque el puerto está configurado para que se elija aleatoriamente.
@@ -10,6 +10,8 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  y un spring jdbc que ataca empleados_simple.
 	  
 	- Una clase java config para instanciar DAODumb.
+	
+	- Un SwaggerConfig para configurar Swagger (url de acceso: http://localhost:5555/swagger-ui.html)
 	
 	- Un controlador Home que redirige / a /index.jsp
 	  

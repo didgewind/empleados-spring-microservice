@@ -7,11 +7,13 @@ server:
 # Puerto aleatorio
 #  port: ${PORT:0}
   port: 5555
+# Máximo número de threads (no sé por qué está puesto)
   tomcat:
     max-threads: 400
 
+# Habilita http2, pero no sé para qué
 org:
   apache:
     coyote:
       http2:
-        Http2Protocol: 400 
+        Http2Protocol: 400

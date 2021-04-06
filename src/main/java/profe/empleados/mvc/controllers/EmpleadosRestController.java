@@ -12,12 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import profe.empleados.model.Empleado;
 import profe.empleados.negocio.EmpNegocio;
 
@@ -30,6 +33,7 @@ import profe.empleados.negocio.EmpNegocio;
  * @author made
  *
  */
+@Api(value="Sistema de Gestión de Empleados")
 @RestController
 @RequestMapping("/empleados")
 public class EmpleadosRestController {
@@ -50,6 +54,7 @@ public class EmpleadosRestController {
 		return emp;
 	}
 	
+	@ApiOperation(value = "Lista de empleados", response = List.class)
 	@GetMapping
 	public List<Empleado> getAllEmpleados() {
 		logger.info("Petición getAllEmpleados() recibida");
@@ -86,6 +91,13 @@ public class EmpleadosRestController {
 		}
 	}
 	
+	@ApiOperation(value = "Elimina un empleado")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = "Todo ok"),
+		    @ApiResponse(code = 401, message = "No está autorizado para eliminar empleados"),
+		    @ApiResponse(code = 403, message = "Tiene prohibido el acceso a esta operación"),
+		    @ApiResponse(code = 404, message = "El empleado que está tratando de eliminar no existe")
+		})
 	@RequestMapping(value="/{cif}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> eliminaEmpleado(@PathVariable String cif, 
 			HttpServletResponse response) throws IOException {
