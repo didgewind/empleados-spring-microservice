@@ -61,17 +61,15 @@
 		    <artifactId>jstl</artifactId>
 		    <scope>provided</scope>
 		</dependency>
-		<dependency>
-			<!-- Eureka service registration -->
+<!-- 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
-			<!-- Spring Cloud starter -->
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
 		</dependency>
-		<dependency>
+ -->		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>

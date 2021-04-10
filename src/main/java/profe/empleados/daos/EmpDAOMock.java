@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import profe.empleados.model.Empleado;
 
 @Repository(value="daoMock")
-@Primary
+//@Primary
 @Lazy
 public class EmpDAOMock implements EmpDAO {
 
