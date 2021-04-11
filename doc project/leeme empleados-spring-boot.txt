@@ -1,5 +1,7 @@
 Esta versión tira de spring boot 2.0
 
+Eliminadas referencias a eureka, generado fichero yml de despliegue en kubernetes / kind
+(falta poner la doc de cómo hacerlo, y hablar de las versiones latest y el imagePull).
 En este branch hemos añadido un Dockerfile para poder lanzar desde docker.
 Tenemos que empaquetar la app, dockerizarla (desde external tools o con el comando
 docker build -t empleados-service-manual-build .) y luego lanzarla con
