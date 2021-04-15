@@ -2,6 +2,7 @@ Esta versión tira de spring boot 2.0
 
 * empleados spring-boot (puerto 5555): microservicio rest de empleados eliminando referencias a bd,
 a seguridad y a eureka para poder ejecutar en cualquier equipo. A partir de un commit hay un ejemplo de swagger.
+También tenemos una clase de configuración para permitir CORS y así poder atacarlo desde una app angular.
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
 diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
 hay que ejecutar la app, porque el puerto está configurado para que se elija aleatoriamente.
