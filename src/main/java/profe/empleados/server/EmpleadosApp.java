@@ -17,7 +17,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 public class EmpleadosApp {
 	
 	public static void main(String[] args) {
-		System.setProperty("spring.config.name", "empleados-server");
 		SpringApplication.run(EmpleadosApp.class, args);
 	}
 	
