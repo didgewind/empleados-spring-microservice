@@ -3,6 +3,10 @@ Esta versión tira de spring boot 2.0
 Obtenemos la configuración del config server. Hay un bootstrap.yml donde especificamos
 la url del config server, el nombre del servicio y el profile activo.
 
+Además estamos eligiendo label (commit id, branch o tag) con la clave
+
+	spring.cloud.config.label
+
 * empleados spring-boot (puerto aleatorio): microservicio rest de empleados tirando de mysql. 
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
 diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
