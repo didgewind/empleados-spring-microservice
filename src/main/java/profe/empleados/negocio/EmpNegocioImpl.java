@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +20,12 @@ public class EmpNegocioImpl implements EmpNegocio {
 	@Resource(name="daoJdbc")
 	//@Autowired
 	private EmpDAO dao;
+	
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Value("${app.empleadosTopic}")
+    private String empleadosTopic;
 
 	public Empleado getEmpleado(String cif) {
 		return dao.getEmpleado(cif);
@@ -27,7 +36,11 @@ public class EmpNegocioImpl implements EmpNegocio {
 	}
 
 	public boolean insertaEmpleado(Empleado emp) {
-		return dao.insertaEmpleado(emp);
+		boolean bResult = dao.insertaEmpleado(emp);
+		if (bResult) {
+			kafkaTemplate.send(empleadosTopic, "Insertado el empleado " + emp);
+		}
+		return bResult;
 	}
 
 	public boolean modificaEmpleado(Empleado emp) {
