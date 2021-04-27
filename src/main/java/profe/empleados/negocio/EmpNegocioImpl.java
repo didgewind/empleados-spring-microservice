@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import profe.empleados.daos.EmpDAO;
 import profe.empleados.model.Empleado;
+import profe.empleados.model.EmpleadosEvent;
+import profe.empleados.model.EmpleadosEventType;
 
 @Service
 @Transactional
@@ -22,7 +24,7 @@ public class EmpNegocioImpl implements EmpNegocio {
 	private EmpDAO dao;
 	
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, EmpleadosEvent> kafkaTemplate;
 
     @Value("${app.empleadosTopic}")
     private String empleadosTopic;
@@ -38,7 +40,17 @@ public class EmpNegocioImpl implements EmpNegocio {
 	public boolean insertaEmpleado(Empleado emp) {
 		boolean bResult = dao.insertaEmpleado(emp);
 		if (bResult) {
-			kafkaTemplate.send(empleadosTopic, "Insertado el empleado " + emp);
+		/*
+		 * Enviamos el evento con el cif del empleado como clave. Así nos aseguramos que todos los eventos
+		 * que se producen sobre el mismo empleado van a la misma partición, por lo que mantenemos el
+		 * orden de los eventos.
+		 * Podemos probar a enviar el mismo mensaje 3 veces, primero con la clave y después sin ella,
+		 * y tener tres instancias de departamentos service arrancadas para comprobar que cuando se envían
+		 * los mensajes sin clave tenemos un RoundRobin, y con clave le llegan siempre a la misma instancia
+		 * de departamento
+		 */
+		for (int i=0; i<3; i++)
+			kafkaTemplate.send(empleadosTopic, emp.getCif(), new EmpleadosEvent(EmpleadosEventType.CREATE, emp));
 		}
 		return bResult;
 	}
