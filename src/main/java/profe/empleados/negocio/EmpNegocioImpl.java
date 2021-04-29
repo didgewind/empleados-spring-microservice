@@ -14,6 +14,7 @@ import profe.empleados.daos.EmpDAO;
 import profe.empleados.model.Empleado;
 import profe.empleados.model.EmpleadosEvent;
 import profe.empleados.model.EmpleadosEventType;
+import profe.empleados.sagas.EmpleadosEventsProducer;
 
 @Service
 @Transactional
@@ -23,12 +24,9 @@ public class EmpNegocioImpl implements EmpNegocio {
 	//@Autowired
 	private EmpDAO dao;
 	
-    @Autowired
-    private KafkaTemplate<String, EmpleadosEvent> kafkaTemplate;
-
-    @Value("${app.empleadosTopic}")
-    private String empleadosTopic;
-
+	@Autowired
+	private EmpleadosEventsProducer eventsProducer;
+	
 	public Empleado getEmpleado(String cif) {
 		return dao.getEmpleado(cif);
 	}
@@ -50,7 +48,7 @@ public class EmpNegocioImpl implements EmpNegocio {
 		 * de departamento
 		 */
 		for (int i=0; i<3; i++)
-			kafkaTemplate.send(empleadosTopic, emp.getCif(), new EmpleadosEvent(EmpleadosEventType.CREATE, emp));
+			eventsProducer.sendEmpleadosEvent(emp.getCif(), new EmpleadosEvent(EmpleadosEventType.CREATE, emp));
 		}
 		return bResult;
 	}
@@ -60,7 +58,12 @@ public class EmpNegocioImpl implements EmpNegocio {
 	}
 
 	public boolean eliminaEmpleado(String cif) {
-		return dao.eliminaEmpleado(cif);
+		boolean bResult = dao.eliminaEmpleado(cif);
+		if (bResult) {
+			eventsProducer.sendEmpleadosEvent(cif, 
+					new EmpleadosEvent(EmpleadosEventType.DELETE, new Empleado(cif, null, null, 0)));
+		}
+		return bResult;
 	}
 
 	@Override

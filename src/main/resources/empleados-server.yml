@@ -18,7 +18,17 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+    consumer:
+      group-id: sagaControlEvents
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: profe.empleados.model
+            
 eureka:
   client:
     enabled: true
@@ -42,4 +52,5 @@ management:
 
 app:
   empleadosTopic: empleados-events
+  sagaControlTopic: saga-control-events
  

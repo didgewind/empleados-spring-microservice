@@ -1,7 +1,7 @@
 Esta versión tira de spring boot 2.0
 
-Ésta es la rama para pruebas Saga y CQRS. Enviamos un EmpleadosEvent con info del empleado
-que acabamos de insertar. Enviamos el mensaje tres veces para jugar con las particiones.
+Ésta es la rama para pruebas Saga y CQRS. En este commit enviamos un EmpleadosEvent con info del empleado
+que acabamos de eliminar. Enviamos el mensaje tres veces para jugar con las particiones.
 Para ver en funcionamiento la relación entre consumidores, grupos de consumidores y
 particiones creamos el topic con tres particiones, lanzamos tres consumidores (departamentos service)
 con el mismo group-id y al enviar el mensaje tres veces sin clave será consumido cada vez por un 
@@ -16,11 +16,14 @@ KafkaTemplate).
 Para que funcione todo previamente necesitamos lanzar kafka y crear el topic (con las tres particiones)
 con los siguientes comandos (desde el folder kafka, en mi caso ~/applications/kafka_2.13-2.8.0):
 
-	bin/zookeeper-server-start.sh [-daemon]config/zookeeper.properties
+	bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
 
-	bin/kafka-server-start.sh config/server.properties
+	bin/kafka-server-start.sh -daemon config/server.properties
 	
 	bin/kafka-topics.sh --create --topic empleados-events --replication-factor 1 \
+    --partitions 3 --bootstrap-server localhost:9092
+
+	bin/kafka-topics.sh --create --topic saga-control-events --replication-factor 1 \
     --partitions 3 --bootstrap-server localhost:9092
 
 
