@@ -41,14 +41,15 @@ public class EmpNegocioImpl implements EmpNegocio {
 		/*
 		 * Enviamos el evento con el cif del empleado como clave. Así nos aseguramos que todos los eventos
 		 * que se producen sobre el mismo empleado van a la misma partición, por lo que mantenemos el
-		 * orden de los eventos.
-		 * Podemos probar a enviar el mismo mensaje 3 veces, primero con la clave y después sin ella,
-		 * y tener tres instancias de departamentos service arrancadas para comprobar que cuando se envían
+		 * orden de los eventos. Hay un commit en el que probamos
+		 * a enviar el mismo mensaje 3 veces, primero con la clave y después sin ella,
+		 * y tenemos tres instancias de departamentos service arrancadas y que sólo muestran los mensajes,
+		 * para comprobar que cuando se envían
 		 * los mensajes sin clave tenemos un RoundRobin, y con clave le llegan siempre a la misma instancia
 		 * de departamento
 		 */
-		for (int i=0; i<3; i++)
-			eventsProducer.sendEmpleadosEvent(emp.getCif(), new EmpleadosEvent(EmpleadosEventType.CREATE, emp));
+		//for (int i=0; i<3; i++)
+			eventsProducer.sendCreateEmpleadoEvent(emp);
 		}
 		return bResult;
 	}
@@ -60,8 +61,7 @@ public class EmpNegocioImpl implements EmpNegocio {
 	public boolean eliminaEmpleado(String cif) {
 		boolean bResult = dao.eliminaEmpleado(cif);
 		if (bResult) {
-			eventsProducer.sendEmpleadosEvent(cif, 
-					new EmpleadosEvent(EmpleadosEventType.DELETE, new Empleado(cif, null, null, 0)));
+			eventsProducer.sendDeleteEmpleadoEvent(cif);
 		}
 		return bResult;
 	}

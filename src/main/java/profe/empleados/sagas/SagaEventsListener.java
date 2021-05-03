@@ -31,12 +31,20 @@ public class SagaEventsListener {
     public void receive(@Payload SagaControlEvent event,
                         @Headers MessageHeaders headers) {
     	logger.info("Recibido el mensaje: " + event);
+    	EmpleadosEvent originalEvent = event.getOriginalEvent();
         switch (event.getSagaOperationResult()) {
         
         case ROLLBACK:
-        	dao.insertaEmpleado(event.getEmpleado());
-        	logger.info("Operación compensatoria: reinsertado el empleado " + event.getEmpleado());
-        	break;
+        	// Aquí habría que comprobar a qué operación se refiere el
+        	// id de evento y actuar de forma compensatoria
+        	switch (originalEvent.getEventType()) {
+        	
+        	case DELETE:
+            	dao.insertaEmpleado(originalEvent.getEmpleado());
+            	logger.info("Operación compensatoria: reinsertado el empleado " + originalEvent.getEmpleado());
+            	break;
+            	
+        	}
         	
         case COMMIT:
         	// Confirmar operación

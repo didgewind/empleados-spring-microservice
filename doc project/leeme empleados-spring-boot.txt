@@ -1,17 +1,13 @@
 Esta versión tira de spring boot 2.0
 
 Ésta es la rama para pruebas Saga y CQRS. En este commit enviamos un EmpleadosEvent con info del empleado
-que acabamos de eliminar. Enviamos el mensaje tres veces para jugar con las particiones.
-Para ver en funcionamiento la relación entre consumidores, grupos de consumidores y
-particiones creamos el topic con tres particiones, lanzamos tres consumidores (departamentos service)
-con el mismo group-id y al enviar el mensaje tres veces sin clave será consumido cada vez por un 
-consumidor (cada mensaje se deposita en una partición). Si enviamos el mensaje tres veces con clave 
-(el cif del empleado) el mensaje es procesado siempre por el mismo consumidor (los tres mensajes
-se depositan en la misma partición) Si ahora tiramos ese consumidor y volvemos a enviar los mensajes uno
-de los dos consumidores vivos pasa a escuchar en esa partición.
+que acabamos de eliminar / crear. Recibimos la respuesta back en SagaEventsListener, donde tenemos el código
+de confirmación / rollback medio asá.
 
-Todo esto lo configuramos entre .yml (con la clave spring.kafka.producer) y el negocio (usando un
-KafkaTemplate).
+Cuando creamos un empleado el mensaje que enviamos siempre lo asigna al departamento de Recursos Humanos.
+
+Todo esto lo configuramos entre el .yml, el negocio y el paquete Saga
+(usando un KafkaTemplate y un SagaEventsListener).
 
 Para que funcione todo previamente necesitamos lanzar kafka y crear el topic (con las tres particiones)
 con los siguientes comandos (desde el folder kafka, en mi caso ~/applications/kafka_2.13-2.8.0):
@@ -26,6 +22,13 @@ con los siguientes comandos (desde el folder kafka, en mi caso ~/applications/ka
 	bin/kafka-topics.sh --create --topic saga-control-events --replication-factor 1 \
     --partitions 3 --bootstrap-server localhost:9092
 
+Podemos probar que el servicio de empleados (y el de departamentos) están enviando / recibiendo
+datos lanzando un par de consumidores de esta manera:
+
+	bin/kafka-console-consumer.sh --topic empleados-events --from-beginning --bootstrap-server localhost:9092
+	
+para lanzar el consumidor de eventos del servicio de departamentos ejecutar el mismo comando
+sustituyendo empleados-events por saga-control-events
 
 * empleados spring-boot (puerto aleatorio): microservicio rest de empleados tirando de mysql. 
 Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
