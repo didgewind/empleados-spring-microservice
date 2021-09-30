@@ -14,7 +14,8 @@ apellidos VARCHAR(20),
 edad INTEGER, 
 primary key (cif));
 
-grant all on empleados_simple.* to maza@localhost identified by 'maza';
+create user maza@localhost identified by 'maza';
+grant all on empleados_simple.* to maza@localhost;
 
 INSERT INTO empleados (cif, nombre, apellidos, edad) VALUES
 ("34334789H", "Antonio", "Martín", 23),
