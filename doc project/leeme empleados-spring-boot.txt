@@ -1,20 +1,16 @@
 Esta versión tira de spring boot 2.0. Esta branch emite empleados de forma reactiva.
+Este commit prescinde de seguridad y bd (los empleados son del daomock) y configura
+el servicio para CORS.
 
 Para probar la reactividad ejecutar desde un terminal:
 
 curl -u profe:profe -H "Accept: text/event-stream" "http://localhost:5555/empleados/reactive"
 
-* empleados spring-boot (puerto aleatorio): microservicio rest de empleados tirando de mysql. 
-Usa i18n para el mensaje de bienvenida. Hemos añadido una línea en el .properties para poder lanzar
-diferentes instancias del servicio y probar balance de carga. Para lanzar diferentes instancias simplemente
-hay que ejecutar la app, porque el puerto está configurado para que se elija aleatoriamente.
+* empleados spring-boot (puerto aleatorio): microservicio rest de empleados.
 
-	- Tres daos - uno en memoria, el otro inmutable que siempre devuelve el mismo empleado
-	  y un spring jdbc que ataca empleados_simple.
+	- Dos daos - uno en memoria, el otro inmutable que siempre devuelve el mismo empleado..
 	  
 	- Una clase java config para instanciar DAODumb.
-	
-	- Un controlador Home que redirige / a /index.jsp
 	  
 	- Un controlador Rest que funciona con JSON y XML y mapea a /empleados/ y sus derivados. Si probamos
 	  directamente con el navegador va a devolver xml (por la cabecera que se envía, creo). El Json
@@ -23,9 +19,9 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 		- GET /empleados/: devuelve todos los empleados
 		- GET /empleados/reactive: devuelve todos los empleados con un delay de 1 segundo por empleado
 		- GET /empleados/x: devuelve el empleado con cif x
-		- PUT /empleados/: modifica un empleado (sólo admin)
-		- DELETE /empleados/x: elimina el empleado con cif x (sólo admin)
-		- POST /empleados/: inserta un empleado (sólo admin)
+		- PUT /empleados/: modifica un empleado
+		- DELETE /empleados/x: elimina el empleado con cif x
+		- POST /empleados/: inserta un empleado
 		
 	  ATENCIÓN, EL API LO HEMOS CAMBIADO A PARTIR DE ESTE COMMIT, AHORA POST Y PUT ESTÁN INTERCAMBIADOS.
 	  LA SINTÁXIS POST QUE USO NO ES TOTALMENTE CORRECTA (VER https://restfulapi.net/rest-put-vs-post/
@@ -38,22 +34,7 @@ hay que ejecutar la app, porque el puerto está configurado para que se elija al
 	  
 	  Devuelve cabeceras con código de error en caso de que se produzcan (por ejemplo, NOT_FOUND en caso
 	  de delete o get de un cif que no existe, o CONFLICT si el empleado está repetido)
-	  
-	- Implementamos seguridad con java config con un usuario profe / profe o administrador admin / admin mediante
-	  la clase profe.empleados.mvc.security.EmpleadosWebSecurityConfig.  Añadimos {noop} como prefijo al
-	  declarar las contraseñas (transparente para el cliente) para saltarnos el requerimiento
-	  de security 5.x de que las contraseñas estén hashcodeadas. Podemos utilizar postman para
-	  invocaciones directas (fichero de config en la carpeta postman) o el navegador.
-	  El /logout está implementado y ahora ya funciona. Para hacer logout en Postman necesitamos
-	  cambiar a No Auth en la colección padre y borrar la cookie de la petición
 
 	- EmpleadosApp arranca el servidor embebido.
 
-- Sobre el logout (cogido del proyecto 'empleados hb spring mvc sec ws 4' del workspace
-'spring completo'): parece que desde la versión 4 de spring security 
-el logout por defecto sólo
-funciona cuando hacemos una petición de logout POST enviando un csrf (ver apuntes de seguridad
-spring). Para habilitar el logout get lo podemos hacer deshabilitando el csrf (como hacemos
-en el proyecto mencionado al configurar la seguridad de forma declarativa) o mediante el código que
-se encuentra en la clase WebSecurityConfig del mismo proyecto (que respeta el csrf).
 
